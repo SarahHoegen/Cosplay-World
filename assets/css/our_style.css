@@ -1,0 +1,39 @@
+#arrow-right{
+    margin-top: 300px;
+    margin-left: 100px;
+}
+
+#arrow-left{
+    margin-top: 300px;
+    margin-right: 100px;
+}
+
+#tip_title{
+    border-bottom: solid 1px rgba(33, 39, 57, 0.15);
+    margin-top: 20px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.8em;
+    color: #1bce7c;
+    text-align: center;
+}
+#carroussel{
+    max-width: 100%;
+}
+
+.user-header{
+    text-align: center;
+    background-color: #605ca8;
+}
+
+#user{
+    width: 15px;
+    height: 15px;
+}
+
+#a{
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
