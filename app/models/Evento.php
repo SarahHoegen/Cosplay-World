@@ -9,31 +9,21 @@ class Evento
     public $data;
     public $hora;
     public $local;
-    public $avalicao;
     public $imagem;
+    public $avalicao;
     public $atividade;
 
     public function __construct($nome, $link, $descricao, $data, $hora, $local, $imagem, $avalicao, $atividade, $id = null)
     {
-        $this->id = $id;
         $this->nome = $nome;
         $this->link = $link;
         $this->descricao = $descricao;
         $this->data = $data;
         $this->hora = $hora;
         $this->local = $local;
-        $this->avalicao = $avalicao;
         $this->imagem = $imagem;
+        $this->avalicao = $avalicao;
         $this->atividade = $atividade;
-    }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setId($id)
-    {
         $this->id = $id;
     }
 
@@ -45,6 +35,16 @@ class Evento
     public function setNome($nome)
     {
         $this->nome = $nome;
+    }
+
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    public function setLink($link)
+    {
+        $this->link = $link;
     }
 
     public function getDescricao()
@@ -77,14 +77,14 @@ class Evento
         $this->hora = $hora;
     }
 
-    public function getAvalicao()
+    public function getLocal()
     {
-        return $this->avalicao;
+        return $this->local;
     }
 
-    public function setAvalicao($avalicao)
+    public function setLocal($local)
     {
-        $this->avalicao = $avalicao;
+        $this->local = $local;
     }
 
     public function getImagem()
@@ -97,6 +97,16 @@ class Evento
         $this->imagem = $imagem;
     }
 
+    public function getAvalicao()
+    {
+        return $this->avalicao;
+    }
+
+    public function setAvalicao($avalicao)
+    {
+        $this->avalicao = $avalicao;
+    }
+
     public function getAtividade()
     {
         return $this->atividade;
@@ -107,24 +117,14 @@ class Evento
         $this->atividade = $atividade;
     }
 
-    public function getLocal()
+    public function getId()
     {
-        return $this->local;
+        return $this->id;
     }
 
-    public function setLocal($local)
+    public function setId($id)
     {
-        $this->local = $local;
-    }
-
-    public function getLink()
-    {
-        return $this->link;
-    }
-
-    public function setLink($link)
-    {
-        $this->link = $link;
+        $this->id = $id;
     }
 
 }

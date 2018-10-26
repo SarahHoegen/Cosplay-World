@@ -1,10 +1,10 @@
 <!--FORMULARIO-->
 
-<h3>
+<h3 id="tit_alterar">
     Alterar Canal
 </h3>
 
-<form method="post" action="?acao=alterar">
+<form method="post" action="?acao=alterar" enctype="multipart/form-data">
 
     <div class="form-group">
 
@@ -26,19 +26,18 @@
     <div class="form-group">
         <label for="link">Link</label>
         <div  class="inputs">
-            <input type="text" name="link" class="form-control inputLogin" id="link" value="<?= $canal->getLink(); ?>" >
+            <input type="url" name="link" class="form-control inputLogin" id="link" value="<?= $canal->getLink(); ?>" >
         </div>
     </div><br>
 
     <div class="form-group">
-
-        <label for="img">
-            Altere a imagem do canal</label>
+        <label for="img">Altere a imagem do canal</label>
+        <h2><img width="30%" src="<?= $baseURL ?>assets/imagens/<?= $canal->imagem; ?>" /></h2>
         <input type="file"  name="imagem" class="form-control-file"  id="img" value="<?= $canal->getImagem(); ?>"/>
     </div>
     <br>
 
-    <button type="submit" name="gravar" class="btn btn-success">Alterar!</button>
+    <button id="gravar" type="submit" name="gravar" class="btn btn-success">Alterar!</button>
 </form>
 
 <!--FORMULARIO-->

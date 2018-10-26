@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__.'/../database/Conexao.php';
-
 require_once 'Cosmaker.php';
 
 class CrudCosmaker
@@ -72,9 +71,19 @@ class CrudCosmaker
         }
     }
 
-    public function deletarCosmaker($id_cos)
+    public function deletarCosmaker($id)
     {
-        $sql = "DELETE FROM cosmaker WHERE id_cos = $id_cos";
+        $sql = "DELETE FROM cosmaker WHERE id_cos = $id";
+        try {
+            $this->conexao->exec($sql);
+            return true;
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function desativarCosmaker($id_cos, $atividade){
+        $sql = "UPDATE cosmaker SET atividade_cos = $atividade WHERE id_cos = $id_cos";
         try {
             $this->conexao->exec($sql);
             return true;

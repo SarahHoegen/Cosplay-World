@@ -85,13 +85,10 @@ class CrudEvento
         }
     }
 
-    public function ArrumarData(Evento $evento)
-    {
-        $id = $evento->id;
-        $sql = "SELECT data_evento, hora_evento, DATE_FORMAT('data_evento', 'hora_evento' '%d/%m/%Y %H:%i') AS datapost FROM evento where id_evento ='$id' ORDER BY data DESC";
-        echo $sql;
+    public function desativarEvento($id_evento, $atividade){
+        $sql = "UPDATE evento SET atividade_evento = $atividade WHERE id_evento = $id_evento";
         try {
-            $res = $this->conexao->exec($sql);
+            $this->conexao->exec($sql);
             return true;
         } catch (PDOException $e) {
             return $e->getMessage();

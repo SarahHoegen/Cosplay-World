@@ -1,5 +1,5 @@
 
-<h3>
+<h3 id="tit_alterar">
     Alterar a dica!
 </h3>
 
@@ -25,7 +25,7 @@
 
     <br>
 
-    <button type="submit" name="gravar" class="btn btn-success">Alterar!</button>
+    <button id="gravar" type="submit" name="gravar" class="btn btn-success">Alterar!</button>
 </form>
 
 

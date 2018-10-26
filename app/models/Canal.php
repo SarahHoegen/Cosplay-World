@@ -2,23 +2,23 @@
 
 class Canal
 {
-    public $nome;
     public $id;
-    public $atividade;
+    public $nome;
     public $link;
-    public $avaliacao;
-    public $imagem;
     public $descricao;
+    public $imagem;
+    public $avaliacao;
+    public $atividade;
 
     public function __construct($nome, $link, $descricao, $imagem, $avaliacao, $atividade,  $id = null)
     {
         $this->nome = $nome;
-        $this->id = $id;
-        $this->atividade = $atividade;
         $this->link = $link;
-        $this->avaliacao = $avaliacao;
-        $this->imagem = $imagem;
         $this->descricao = $descricao;
+        $this->imagem = $imagem;
+        $this->avaliacao = $avaliacao;
+        $this->atividade = $atividade;
+        $this->id = $id;
     }
 
     public function getNome()
@@ -31,26 +31,6 @@ class Canal
         $this->nome = $nome;
     }
 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    public function getAtividade()
-    {
-        return $this->atividade;
-    }
-
-    public function setAtividade($atividade)
-    {
-        $this->atividade = $atividade;
-    }
-
     public function getLink()
     {
         return $this->link;
@@ -61,14 +41,14 @@ class Canal
         $this->link = $link;
     }
 
-    public function getAvaliacao()
+    public function getDescricao()
     {
-        return $this->avaliacao;
+        return $this->descricao;
     }
 
-    public function setAvaliacao($avaliacao)
+    public function setDescricao($descricao)
     {
-        $this->avaliacao = $avaliacao;
+        $this->descricao = $descricao;
     }
 
     public function getImagem()
@@ -81,14 +61,34 @@ class Canal
         $this->imagem = $imagem;
     }
 
-    public function getDescricao()
+    public function getAvaliacao()
     {
-        return $this->descricao;
+        return $this->avaliacao;
     }
 
-    public function setDescricao($descricao)
+    public function setAvaliacao($avaliacao)
     {
-        $this->descricao = $descricao;
+        $this->avaliacao = $avaliacao;
+    }
+
+    public function getAtividade()
+    {
+        return $this->atividade;
+    }
+
+    public function setAtividade($atividade)
+    {
+        $this->atividade = $atividade;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
 }

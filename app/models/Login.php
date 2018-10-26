@@ -26,14 +26,14 @@ class Login {
 
     public function estaLogado(){
         if(!isset($_SESSION["logado"])){
-            header('location: ../../index.php');
+            header('Location: http://localhost/Projeto/index.php');
         }
     }
 
     public function logout(){
         session_start();
         session_destroy();
-        header('location: ../../index.php');
+        header('Location: http://localhost/Projeto/index.php');
     }
 
     public static function verificaPermissao($tipo_user, $permissao){
@@ -41,5 +41,10 @@ class Login {
             header('Location: http://localhost/Projeto/index.php');
         }
     }
+
+//    public function wpdocs_custom_excerpt_length( $length ) {
+//        return 20;
+//    }
+//        add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length');
 
 }

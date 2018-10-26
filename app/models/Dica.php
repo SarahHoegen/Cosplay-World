@@ -10,20 +10,10 @@ class Dica
 
     public function __construct($nome, $descricao, $data, $atividade, $id = null)
     {
-        $this->id = $id;
         $this->nome = $nome;
         $this->descricao = $descricao;
         $this->data = $data;
         $this->atividade = $atividade;
-    }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setId($id)
-    {
         $this->id = $id;
     }
 
@@ -65,6 +55,16 @@ class Dica
     public function setAtividade($atividade)
     {
         $this->atividade = $atividade;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
 }

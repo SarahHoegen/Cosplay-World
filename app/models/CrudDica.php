@@ -67,7 +67,6 @@ class CrudDica
 
     public function deletarDica($id_dica)
     {
-
         $this->conexao = Conexao::getConexao();
         $sql = "DELETE FROM dica WHERE id_dica = $id_dica";
         try {
@@ -76,7 +75,16 @@ class CrudDica
         } catch (PDOException $e) {
             return $e->getMessage();
         }
+    }
 
+    public function desativarDica($id_dica, $atividade){
+        $sql = "UPDATE dica SET atividade_dica = $atividade WHERE id_dica = $id_dica";
+        try {
+            $this->conexao->exec($sql);
+            return true;
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
     }
 
 }

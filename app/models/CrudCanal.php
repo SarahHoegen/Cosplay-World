@@ -80,5 +80,15 @@ class CrudCanal
         }
     }
 
+    public function desativarCanal($id_canal, $atividade){
+        $sql = "UPDATE canal SET atividade_canal = $atividade WHERE id_canal = $id_canal";
+        try {
+            $this->conexao->exec($sql);
+            return true;
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
 }
 

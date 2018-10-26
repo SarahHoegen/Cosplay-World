@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__.'/../database/Conexao.php';
-
 require_once 'Usuario.php';
 
 class CrudUsuario
@@ -15,31 +14,24 @@ class CrudUsuario
 
     public function getUsuarios()
     {
-
         $sql = 'SELECT * FROM usuario';
-
         $resultado = $this->conexao->query($sql);
-
         $usuarios = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
         $listaUsuarios = [];
-
         foreach ($usuarios as $usuario) {
             $listaUsuarios[] = new Usuario($usuario['nome'], $usuario['apelido'], $usuario['data_nasc'], $usuario['email'], $usuario['senha'], $usuario['imagem'], $usuario['tipo_user'], $usuario['atividade'], $usuario['id_usuario']);
-
-
         }
         return $listaUsuarios;
     }
 
     public function getUsuario($id_usuario)
     {
+        echo "SELECT * FROM usuario WHERE id_usuario = $id_usuario";
         $consulta = $this->conexao->query("SELECT * FROM usuario WHERE id_usuario = $id_usuario");
         $usuario = $consulta->fetch(PDO::FETCH_ASSOC);
         return new Usuario($usuario['nome'], $usuario['apelido'], $usuario['data_nasc'], $usuario['email'], $usuario['senha'], $usuario['imagem'], $usuario['tipo_user'], $usuario['atividade'], $usuario['id_usuario']);
     }
-
-
 
     public function insertUsuario(Usuario $usuario)
     {
@@ -52,7 +44,6 @@ class CrudUsuario
         $dados[] = $usuario->getTipoUser();
         $dados[] = $usuario->getAtividade();
         $sql = "INSERT INTO usuario (nome, email, senha, apelido, imagem, data_nasc, tipo_user, atividade) values ('$dados[0]', '$dados[1]', '$dados[2]', '$dados[3]', '$dados[4]', '$dados[5]', '$dados[6]', '$dados[7]'  )";
-        echo $sql;
         try {
             $res = $this->conexao->exec($sql);
             return true;
@@ -87,8 +78,7 @@ class CrudUsuario
 
     public function deleteUsuario($id_usuario)
     {
-
-        $sql = "DELETE FROM usuario WHERE id_usuario=" . $id_usuario;
+        $sql = "DELETE FROM usuario WHERE id_usuario= $id_usuario";
         echo $sql;
         try {
             $res = $this->conexao->exec($sql);
@@ -98,4 +88,15 @@ class CrudUsuario
 
         }
     }
+
+    public function desativarUsuario($id_usuario, $atividade){
+        $sql = "UPDATE usuario SET atividade = $atividade WHERE id_usuario = $id_usuario";
+        try {
+            $this->conexao->exec($sql);
+            return true;
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
 }

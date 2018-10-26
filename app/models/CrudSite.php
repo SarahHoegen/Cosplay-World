@@ -47,7 +47,6 @@ class CrudSite
         } catch (PDOException $e) {
             return $e->getMessage();
         }
-
     }
 
     public function editarSite(Site $site)
@@ -67,7 +66,6 @@ class CrudSite
             return $res;
         } catch (PDOException $erro) {
             return $erro->getMessage();
-
         }
     }
 
@@ -80,7 +78,16 @@ class CrudSite
         } catch (PDOException $e) {
             return $e->getMessage();
         }
+    }
 
+    public function desativarSite($id_site, $atividade){
+        $sql = "UPDATE site SET atividade_site = $atividade WHERE id_site = $id_site";
+        try {
+            $this->conexao->exec($sql);
+            return true;
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
     }
 
 }

@@ -5,7 +5,7 @@ class Conexao
     const HOST      = "localhost";
     const NOMEBANCO = "cosplay";
     const USUARIO   = "root";
-    const SENHA     = "";
+    const SENHA     = "root";
 
     public static $conexao = null;
     public static function getConexao(){

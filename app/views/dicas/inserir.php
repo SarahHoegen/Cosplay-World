@@ -1,5 +1,5 @@
 
-                        <h3>
+                        <h3 id="tit_alterar">
                             Quer dar dicas incríveis e ajudar a galera toda? Preencha os campos!
                         </h3>
 
@@ -24,7 +24,7 @@
 
                             <br>
 
-                            <button type="submit" name="gravar" class="btn btn-success">Inserir!</button>
+                            <button id="gravar" type="submit" name="gravar" class="btn btn-success">Inserir!</button>
                         </form>
 
 

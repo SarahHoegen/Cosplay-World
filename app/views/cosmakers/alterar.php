@@ -3,7 +3,7 @@
     Altere um cosmaker!
 </h3>
 
-<form method="post" action="?acao=alterar">
+<form method="post" action="?acao=alterar" enctype="multipart/form-data">
 
     <div class="form-group">
 
@@ -21,6 +21,14 @@
             <input type="text" name="descricao" class="form-control inputLogin" id="desc" value="<?= $cosmaker->getDescricao(); ?>">
         </div>
     </div>
+
+    <div class="form-group">
+        <label for="funcao">Função</label>
+        <div  class="inputs">
+            <input type="text" name="funcao" class="form-control inputLogin" id="funcao" value="<?= $cosmaker->getFuncao(); ?>">
+        </div>
+    </div>
+
 
     <div class="form-group">
         <label for="link">Link</label>
