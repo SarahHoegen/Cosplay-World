@@ -1,0 +1,101 @@
+#arrow-right{
+    margin-top: 300px;
+    margin-left: 100px;
+}
+
+#arrow-left{
+    margin-top: 300px;
+    margin-right: 100px;
+}
+
+#tip_title{
+    border-bottom: solid 1px rgba(33, 39, 57, 0.15);
+    margin-top: 20px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.8em;
+    color: #ceb808;
+    text-align: center;
+}
+#carroussel{
+    max-width: 100%;
+}
+
+.user-header{
+    text-align: center;
+    background-color: #605ca8;
+}
+
+#user{
+    width: 15px;
+    height: 15px;
+}
+
+#a{
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+
+#canais-element {
+    border-radius: 50%;
+}
+
+.readMore{
+    margin-left: 95px;
+}
+
+.searchMore{
+    padding-bottom: 50px;
+    width: 2px;
+    height: 2px;
+}
+
+.textMore{
+    font-size: 19px !important;
+    text-transform: uppercase;
+    color:#f0f0f0;
+}
+
+.lupa{
+font-size: 25px !important;
+margin-bottom: 100px;
+}
+
+p.branco{
+    color:#f0f0f0;
+}
+
+h1.preto {
+    color: #000000;
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+.planContainer .button a{
+    width: 90%;
+    color: #ffffff;
+}
+
+button{
+    text-transform: uppercase;
+}
+
+li.user-header{
+    background-color: #290739;
+}
+
+#preto{
+    color: #000000;
+}
+
+ul.dropdown-menu{
+    margin-right: -77px;
+}
+.nome{
+    color: white;
+    margin-left: 75px;
+}
