@@ -1,7 +1,7 @@
 <?php
+session_start();
 $baseURL = "http://localhost/Projeto/";
-    require_once __DIR__. '/../../models/CrudDica.php';
-
+require_once __DIR__. '/../../models/CrudDica.php';
 
     if (isset($_GET['acao'])) {
         $acao = $_GET['acao'];
@@ -12,19 +12,25 @@ $baseURL = "http://localhost/Projeto/";
     switch ($acao){
 
         case 'inserir':
-            if (!isset($_POST['gravar'])) {
-                include __DIR__.'/../../views/templates/cabecalho.php';
-                include __DIR__.'/../../views/dicas/inserir.php';
-                include __DIR__.'/../../views/templates/rodape.php';
-            }else{
-                $nome = $_POST['nome'];
-                $descricao = $_POST['descricao'];
-                $data = date("d/m/Y");
-                $atividade = 0;
-                $novaDica = new Dica($nome, $descricao, $data, $atividade);
-                $crud = new CrudDica();
-                $res = $crud->insertDica($novaDica);
-                header('Location: ../../views/admin/admin.php');
+            if($_SESSION['esta_logado'] !=true){
+                header('Location:  http://localhost/Projeto/app/controllers/usuario/login.php');
+            }else {
+                if (!isset($_POST['gravar'])) {
+                    include __DIR__ . '/../../views/templates/cabecalho.php';
+                    include __DIR__ . '/../../views/dicas/inserir.php';
+                    include __DIR__ . '/../../views/templates/rodape.php';
+                } else {
+                    $id_usuario = $_SESSION['id'];
+                    $nome = $_POST['nome'];
+                    $descricao = $_POST['descricao'];
+                    $data = date("Y/m/d");
+                    $atividade = 0;
+                    $id = null;
+                    $novaDica = new Dica($nome, $descricao, $data, $atividade,$id, $id_usuario);
+                    $crud = new CrudDica();
+                    $res = $crud->insertDica($novaDica);
+                    header('Location: http://localhost/Projeto/index.php#dicas');
+                }
             }
             break;
 
@@ -37,16 +43,16 @@ $baseURL = "http://localhost/Projeto/";
                 include __DIR__.'/../../views/dicas/alterar.php';
                 include __DIR__.'/../../views/templates/rodape.php';
             }else{
+                $id_usuario = $_SESSION['id'];
                 $id = $_POST['id'];
                 $nome = $_POST['nome'];
                 $descricao = $_POST['descricao'];
                 $data = date("d/m/y");
                 $atividade = 0;
-                $novaDica = new Dica($nome, $descricao, $data, $atividade, $id);
+                $novaDica = new Dica($nome, $descricao, $data, $atividade, $id, $id_usuario);
                 $crud = new CrudDica();
                 $crud->editarDica($novaDica);
-
-                header('Location: ../../views/admin/admin.php');
+                header('Location: http://localhost/Projeto/index.php#dicas');
             }
             break;
 
@@ -64,10 +70,10 @@ $baseURL = "http://localhost/Projeto/";
                 $res = $crud->deletarDica($id);
 
                 if ($res == 1){
-                    header('Location: ../../views/admin/admin.php');
+                    header('Location: http://localhost/Projeto/index.php#dicas');
                 }else{
                     echo 'Não foi possível efetuar a exclusão!';
-                    echo '<a href="../../views/admin/admin.php">Voltar</a>';
+                    echo '<a href=" http://localhost/Projeto/index.php#dicas">Voltar</a>';
                 }
             }
             break;

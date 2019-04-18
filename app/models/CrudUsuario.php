@@ -25,12 +25,32 @@ class CrudUsuario
         return $listaUsuarios;
     }
 
-    public function getUsuario($id_usuario)
+    public function getUsuario($id)
     {
-        echo "SELECT * FROM usuario WHERE id_usuario = $id_usuario";
-        $consulta = $this->conexao->query("SELECT * FROM usuario WHERE id_usuario = $id_usuario");
+        $consulta = $this->conexao->query("SELECT * FROM usuario WHERE id_usuario = $id");
         $usuario = $consulta->fetch(PDO::FETCH_ASSOC);
         return new Usuario($usuario['nome'], $usuario['apelido'], $usuario['data_nasc'], $usuario['email'], $usuario['senha'], $usuario['imagem'], $usuario['tipo_user'], $usuario['atividade'], $usuario['id_usuario']);
+    }
+
+    public function apelidoExists($apelido) {
+        $sql = "SELECT * FROM usuario WHERE apelido = '$apelido'";
+        $consulta = $this->conexao->query($sql)->fetch(PDO::FETCH_ASSOC);
+
+        if ($consulta != false) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function emailExists($email) {
+        $sql = "SELECT * FROM usuario WHERE email = '$email'";
+        $consulta = $this->conexao->query($sql)->fetch(PDO::FETCH_ASSOC);
+
+        if ($consulta != false) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function insertUsuario(Usuario $usuario)
@@ -64,8 +84,11 @@ class CrudUsuario
         $data_nasc = $usu->getDataNasc();
         $tipo_user = $usu->getTipoUser();
         $atividade = $usu->getAtividade();
-
-        $sql = "UPDATE usuario SET nome= '$nome', email='$email', senha='$senha', imagem='$imagem', apelido='$apelido', data_nasc='$data_nasc', tipo_user='$tipo_user', atividade='$atividade' WHERE id_usuario =$id_usuario";
+        if($imagem == null){
+        $sql = "UPDATE usuario SET nome= '$nome', email='$email', senha='$senha', apelido='$apelido', data_nasc='$data_nasc', tipo_user='$tipo_user', atividade='$atividade' WHERE id_usuario =$id_usuario";
+        }else{
+            $sql = "UPDATE usuario SET nome= '$nome', email='$email', senha='$senha', imagem='$imagem', apelido='$apelido', data_nasc='$data_nasc', tipo_user='$tipo_user', atividade='$atividade' WHERE id_usuario =$id_usuario";
+        }
         echo $sql;
         try {
             $res = $this->conexao->exec($sql);

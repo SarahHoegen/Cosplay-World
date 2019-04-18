@@ -12,27 +12,51 @@ $baseURL = "http://localhost/Projeto/";
     switch ($acao){
 
         case 'inserir':
+            if($_SESSION['esta_logado'] !=true){
+                header('Location:  http://localhost/Projeto/app/controllers/usuario/login.php');
+                }else{
             if (!isset($_POST['gravar'])) {
                 include __DIR__.'/../../views/admin/views/templates/cabecalho.php';
                 include __DIR__.'/../../views/admin/views/canais/inserir.php';
                 include __DIR__.'/../../views/admin/views/templates/rodape.php';
-            }else{
+                }else {
+                $erro = false;
                 $origem = $_FILES['imagem']['tmp_name'];
                 $nome_img = date('dmYhis').$_FILES['imagem']['name'];
                 $destino = __DIR__.'/../../../assets/imagens/'.$nome_img;
                 move_uploaded_file($origem, $destino);
+                $id_usuario = $_SESSION['id'];
                 $nome = $_POST['nome'];
                 $link = $_POST['link'];
                 $descricao = $_POST['descricao'];
                 $imagem = $nome_img;
-                $avaliacao = 0;
-                $atividade = true;
-                $novoCanal = new Canal($nome, $link, $descricao, $imagem, $avaliacao, $atividade);
+                $atividade = 1;
+                $id = null;
                 $crud = new CrudCanal();
-                $res = $crud->insertCanal($novoCanal);
-                header("Location: http://localhost/Projeto/app/views/admin/admin.php#canais");
+                $ja_existe = $crud->linkExists($link);
+            if ($ja_existe) {
+                $erro = true;
+                $mensagem = "Este link já existe!";
             }
-            break;
+                $ja_existe = $crud->nomeExists($nome);
+                if ($ja_existe) {
+                    $erro = true;
+                    $mensagem = "Este nome já existe!";
+                }
+                if ($erro == false) {
+                    $novoCanal = new Canal($nome, $link, $descricao, $imagem, $atividade,$id, $id_usuario);
+                    $res = $crud->insertCanal($novoCanal);
+                    if ($res) {
+                       header('Location: http://localhost/Projeto/app/views/admin/admin.php#canais');
+                    } else {
+                        echo "deu erro!";
+                    }
+                } else {
+                    header("location: ?acao=inserir&msg=$mensagem");
+                }
+                    }
+                }
+        break;
 
         case 'alterar':
             if (!isset($_POST['gravar'])) {
@@ -43,18 +67,26 @@ $baseURL = "http://localhost/Projeto/";
                 include __DIR__.'/../../views/admin/views/canais/alterar.php';
                 include __DIR__.'/../../views/admin/views/templates/rodape.php';
             }else{
+                if($_FILES['imagem']['name'] == null){
+                    $imagem = null;
+                }else {
+                    $origem = $_FILES['imagem']['tmp_name'];
+                    $nome_img = date('dmYhis') . $_FILES['imagem']['name'];
+                    $destino = __DIR__ . '/../../../assets/imagens/' . $nome_img;
+                    move_uploaded_file($origem, $destino);
+                    $imagem = $nome_img;
+                }
                 $origem = $_FILES['imagem']['tmp_name'];
                 $nome_img = date('dmYhis').$_FILES['imagem']['name'];
                 $destino = __DIR__.'/../../../assets/imagens/'.$nome_img;
                 move_uploaded_file($origem, $destino);
                 $id = $_POST['id'];
+                $id_usuario = $_SESSION['id'];
                 $nome = $_POST['nome'];
                 $link = $_POST['link'];
                 $descricao = $_POST['descricao'];
-                $imagem = $nome_img;
-                $avaliacao = 0;
-                $atividade = true;
-                $novoCanal = new Canal($nome, $link, $descricao, $imagem, $avaliacao, $atividade, $id);
+                $atividade = 1;
+                $novoCanal = new Canal($nome, $link, $descricao, $imagem, $atividade, $id, $id_usuario);
                 $crud = new CrudCanal();
                 $crud->editarCanal($novoCanal);
                 header("Location: http://localhost/Projeto/app/views/admin/admin.php#canais");
@@ -89,12 +121,12 @@ $baseURL = "http://localhost/Projeto/";
                 $atividade = 0;
                 $crud = new CrudCanal();
                 $res = $crud->desativarCanal($id, $atividade);
-                header('Location: http://localhost/Projeto/app/views/admin/admin.php');
+                header('Location: http://localhost/Projeto/app/views/admin/admin.php#canais');
             }else{
                 $atividade = true;
                 $crud = new CrudCanal();
                 $res = $crud->desativarCanal($id, $atividade);
-                header('Location: http://localhost/Projeto/app/views/admin/admin.php');
+                header('Location: http://localhost/Projeto/app/views/admin/admin.php#canais');
             }
             break;
 

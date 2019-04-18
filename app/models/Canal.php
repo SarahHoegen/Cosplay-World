@@ -9,16 +9,17 @@ class Canal
     public $imagem;
     public $avaliacao;
     public $atividade;
+    public $id_usuario;
 
-    public function __construct($nome, $link, $descricao, $imagem, $avaliacao, $atividade,  $id = null)
+    public function __construct($nome, $link, $descricao, $imagem, $atividade,  $id = null, $id_usuario)
     {
         $this->nome = $nome;
         $this->link = $link;
         $this->descricao = $descricao;
         $this->imagem = $imagem;
-        $this->avaliacao = $avaliacao;
         $this->atividade = $atividade;
         $this->id = $id;
+        $this->id_usuario = $id_usuario;
     }
 
     public function getNome()
@@ -61,16 +62,6 @@ class Canal
         $this->imagem = $imagem;
     }
 
-    public function getAvaliacao()
-    {
-        return $this->avaliacao;
-    }
-
-    public function setAvaliacao($avaliacao)
-    {
-        $this->avaliacao = $avaliacao;
-    }
-
     public function getAtividade()
     {
         return $this->atividade;
@@ -89,6 +80,16 @@ class Canal
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+        public function getIdUsuario()
+    {
+        return $this->id_usuario;
+    }
+
+    public function setIdUsuario($id_usuario)
+    {
+        $this->id_usuario = $id_usuario;
     }
 
 }

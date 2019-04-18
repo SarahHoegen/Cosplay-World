@@ -5,22 +5,25 @@ class Cosmaker
     public $id;
     public $nome;
     public $link;
+    public $link2;
     public $funcao;
     public $descricao;
     public $imagem;
     public $avaliacao;
     public $atividade;
+    public $id_usuario;
 
-    public function __construct($nome, $link, $funcao, $descricao, $imagem, $avaliacao, $atividade,  $id = null)
+    public function __construct($nome, $link, $link2, $funcao, $descricao, $imagem, $atividade,  $id = null, $id_usuario)
     {
         $this->nome = $nome;
         $this->link = $link;
+        $this->link2 = $link2;
         $this->funcao = $funcao;
         $this->descricao = $descricao;
         $this->imagem = $imagem;
-        $this->avaliacao = $avaliacao;
         $this->atividade = $atividade;
         $this->id = $id;
+        $this->id_usuario = $id_usuario;
     }
 
     public function getNome()
@@ -41,6 +44,16 @@ class Cosmaker
     public function setLink($link)
     {
         $this->link = $link;
+    }
+
+    public function getLink2()
+    {
+        return $this->link2;
+    }
+
+    public function setLink2($link2)
+    {
+        $this->link2 = $link2;
     }
 
     public function getFuncao()
@@ -73,16 +86,6 @@ class Cosmaker
         $this->imagem = $imagem;
     }
 
-    public function getAvaliacao()
-    {
-        return $this->avaliacao;
-    }
-
-    public function setAvaliacao($avaliacao)
-    {
-        $this->avaliacao = $avaliacao;
-    }
-
     public function getAtividade()
     {
         return $this->atividade;
@@ -101,6 +104,16 @@ class Cosmaker
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    public function getIdUsuario()
+    {
+        return $this->id_usuario;
+    }
+
+    public function setIdUsuario($id_usuario)
+    {
+        $this->id_usuario = $id_usuario;
     }
 
 }

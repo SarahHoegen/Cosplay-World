@@ -17,7 +17,7 @@ class Login {
             if ($this->conexao->query($sql)->fetch(PDO::FETCH_ASSOC) != '') {
                 return $this->conexao->query($sql)->fetch(PDO::FETCH_ASSOC);
             } else {
-//                Aqui entra se não existir nenhum usuario
+                return false;
             }
         } catch (PDOException $erro) {
             return $erro->getMessage();
@@ -42,9 +42,5 @@ class Login {
         }
     }
 
-//    public function wpdocs_custom_excerpt_length( $length ) {
-//        return 20;
-//    }
-//        add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length');
 
 }

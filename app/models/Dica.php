@@ -7,14 +7,16 @@ class Dica
     public $descricao;
     public $data;
     public $atividade;
+    public $id_usuario;
 
-    public function __construct($nome, $descricao, $data, $atividade, $id = null)
+    public function __construct($nome, $descricao, $data, $atividade, $id = null, $id_usuario)
     {
         $this->nome = $nome;
         $this->descricao = $descricao;
         $this->data = $data;
         $this->atividade = $atividade;
         $this->id = $id;
+        $this->id_usuario = $id_usuario;
     }
 
     public function getNome()
@@ -65,6 +67,15 @@ class Dica
     public function setId($id)
     {
         $this->id = $id;
+    }
+     public function getIdUsuario()
+    {
+        return $this->id_usuario;
+    }
+
+    public function setIdUsuario($id)
+    {
+        $this->id_usuario = $id_usuario;
     }
 
 }

@@ -1,3 +1,5 @@
+<!--FORMULÁRIO-->
+
 <h3 class="box-title">Excluir usuário</h3>
 </div>
 
@@ -33,7 +35,6 @@
         <div class="form-group">
             <label for="exampleInputFile">Imagem</label>
             <h2><img width="30%" src="<?= $baseURL ?>assets/imagens/<?= $usuario->imagem; ?>" /></h2>
-            <p class="help-block">Coloque a imagem desejada.</p>
             <input type="file" name="imagem" value="<?= $usuario->getImagem(); ?>" disabled/>
         </div>
 
@@ -46,3 +47,5 @@
 
 </div>
 </section>
+
+<!--/FORMULÁRIO-->

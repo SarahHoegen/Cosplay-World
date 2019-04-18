@@ -16,7 +16,7 @@ class CrudDica
     {
         $consulta = $this->conexao->query("SELECT * FROM dica WHERE id_dica = $id");
         $dica = $consulta->fetch(PDO::FETCH_ASSOC);
-        return new Dica($dica['nome_dica'], $dica['descricao_dica'], $dica['data_dica'], $dica['atividade_dica'], $dica['id_dica']);
+        return new Dica($dica['nome_dica'], $dica['descricao_dica'], $dica['data_dica'], $dica['atividade_dica'], $dica['id_dica'], $dica['id_usuario']);
     }
 
     public function getDicas()
@@ -26,7 +26,7 @@ class CrudDica
 
         $listaDicas = [];
         foreach ($arrayDicas as $dica) {
-            $listaDicas[] = new Dica($dica['nome_dica'], $dica['descricao_dica'], $dica['data_dica'], $dica['atividade_dica'], $dica['id_dica']);
+            $listaDicas[] = new Dica($dica['nome_dica'], $dica['descricao_dica'], $dica['data_dica'], $dica['atividade_dica'], $dica['id_dica'], $dica['id_usuario']);
         }
         return $listaDicas;
     }
@@ -37,7 +37,8 @@ class CrudDica
         $dados[] = $dica->getDescricao();
         $dados[] = $dica->getData();
         $dados[] = $dica->getAtividade();
-        $sql = "INSERT INTO dica (nome_dica, descricao_dica, data_dica, atividade_dica) VALUES ('$dados[0]', '$dados[1]', '$dados[2]', '$dados[3]')";
+        $dados[] = $dica->getIdUsuario();
+        $sql = "INSERT INTO dica (nome_dica, descricao_dica, data_dica, atividade_dica, id_usuario) VALUES ('$dados[0]', '$dados[1]', '$dados[2]', '$dados[3]', '$dados[4]')";
         echo $sql;
         try {
             $res = $this->conexao->exec($sql);

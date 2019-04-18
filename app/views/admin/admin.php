@@ -32,13 +32,16 @@ $listaUsuarios = $crud->getUsuarios();
 $baseURL = "http://localhost/Projeto/";
 ?>
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href=" <?= $baseURL ?>assets/admin/dist/img/admin.ico" type="image/x-icon">
+    <link rel="icon" href=" <?= $baseURL ?>assets/admin/dist/img/admin.ico" type="image/x-icon">
+
     <title>Área do Admin</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -93,8 +96,8 @@ $baseURL = "http://localhost/Projeto/";
                         </a>
                         <ul class="dropdown-menu">
                             <li class="user-header">
-                                <img width="80px" src="<?= $baseURL ?>assets/imagens/<?= $_SESSION['imagem'];?>" class="user-image"/>
-                                <p><?php echo $_SESSION['usuario'];?></p>
+                                <img width="80px" src="<?= $baseURL ?>assets/imagens/<?= $_SESSION['imagem'];?>" class="user-image img"/>
+                                <p class="nome"><?php echo $_SESSION['usuario'];?></p>
                             </li>
 
                             <!-- Menu Footer-->
@@ -182,7 +185,7 @@ $baseURL = "http://localhost/Projeto/";
                         </div>
                     </div>
                     <div class="box-footer clearfix">
-                        <a href="../../controllers/admin/dicas.php?acao=inserir" class="btn btn-sm btn-info btn-flat pull-left">Acrescentar dica</a>
+                        <a href="../../controllers/admin/dicas.php?acao=inserir" class="btn btn-sm btn-info btn-flat pull-left cor">Acrescentar dica</a>
                     </div>
                 </div>
 
@@ -209,6 +212,7 @@ $baseURL = "http://localhost/Projeto/";
                                     <th>Função</th>
                                     <th>Descrição</th>
                                     <th>Link</th>
+                                    <th>Link Secundário</th>
                                     <th>Atividade</th>
                                     <th>Ação</th>
                                 </tr>
@@ -221,6 +225,7 @@ $baseURL = "http://localhost/Projeto/";
                                     <td><?= $cosmaker->funcao; ?></td>
                                     <td><?= $cosmaker->descricao; ?></td>
                                     <td><?= $cosmaker->link; ?></td>
+                                    <td><?= $cosmaker->link2; ?></td>
                                     <td><span class="label label-success color"><?php if ($cosmaker->atividade == 1): ?><a href="../../controllers/admin/cosmakers.php?acao=desativar&id=<?= $cosmaker->id;?>&atividade=<?=$cosmaker->atividade;?>">Desativar</a> <?php endif; ?></span>
                                         <span class="label label-danger color"><?php if ($cosmaker->atividade == 0): ?><a href="../../controllers/admin/cosmakers.php?acao=desativar&id=<?= $cosmaker->id;?>&atividade=<?=$cosmaker->atividade;?>"> Ativar</a> <?php endif; ?></span>
                                     </td>
@@ -236,7 +241,7 @@ $baseURL = "http://localhost/Projeto/";
                         </div>
                     </div>
                     <div class="box-footer clearfix">
-                        <a href="../../controllers/admin/cosmakers.php?acao=inserir" class="btn btn-sm btn-info btn-flat pull-left">Acrescentar cosmaker</a>
+                        <a href="../../controllers/admin/cosmakers.php?acao=inserir" class="btn btn-sm btn-info btn-flat pull-left cor">Acrescentar cosmaker</a>
                     </div>
                 </div>
 
@@ -261,8 +266,15 @@ $baseURL = "http://localhost/Projeto/";
                                     <th>Nome</th>
                                     <th>Imagem</th>
                                     <th>Descrição</th>
-                                    <th>Data</th>
-                                    <th>Hora</th>
+                                    <th>Data 1</th>
+                                    <th>Hora Início</th>
+                                    <th>Hora Fim</th>
+                                    <th>Data 2</th>
+                                    <th>Hora Início</th>
+                                    <th>Hora Fim</th>
+                                    <th>Data 3</th>
+                                    <th>Hora Início</th>
+                                    <th>Hora Fim</th>
                                     <th>Local</th>
                                     <th>Link</th>
                                     <th>Atividade</th>
@@ -277,6 +289,27 @@ $baseURL = "http://localhost/Projeto/";
                                     <td><?= $evento->descricao; ?></td>
                                     <td><?= date_format(date_create($evento->data),"d/m/Y"); ?></td>
                                     <td><?= date_format(date_create($evento->hora),"H:i"); ?></td>
+                                    <td><?= date_format(date_create($evento->hora_fim),"H:i"); ?></td>
+                                    <?php if($evento->data2 == null):?>
+                                    <td>Não Preenchido</td>
+                                    <td>Não Preenchido</td>
+                                    <td>Não Preenchido</td>
+                                    <?php endif;?>
+                                    <?php if(isset($evento->data2)):?>
+                                    <td><?= date_format(date_create($evento->data2),"d/m/Y"); ?></td>
+                                    <td><?= date_format(date_create($evento->hora2),"H:i"); ?></td>
+                                    <td><?= date_format(date_create($evento->hora_fim2),"H:i"); ?></td>
+                                    <?php endif;?>
+                                    <?php if($evento->data3 == null):?>
+                                    <td>Não Preenchido</td>
+                                    <td>Não Preenchido</td>
+                                    <td>Não Preenchido</td>
+                                    <?php endif;?>
+                                    <?php if(isset($evento->data3)):?>
+                                    <td><?= date_format(date_create($evento->data3),"d/m/Y"); ?></td>
+                                    <td><?= date_format(date_create($evento->hora3),"H:i"); ?></td>
+                                    <td><?= date_format(date_create($evento->hora_fim3),"H:i"); ?></td>
+                                    <?php endif;?>
                                     <td><?= $evento->local; ?></td>
                                     <td><?= $evento->link; ?></td>
                                     <td><span class="label label-success color"><?php if ($evento->atividade == 1): ?><a href="../../controllers/admin/eventos.php?acao=desativar&id=<?= $evento->id;?>&atividade=<?=$evento->atividade;?>">Desativar</a> <?php endif; ?></span>
@@ -295,7 +328,7 @@ $baseURL = "http://localhost/Projeto/";
                         </div>
                     </div>
                     <div class="box-footer clearfix">
-                        <a href="../../controllers/admin/eventos.php?acao=inserir" class="btn btn-sm btn-info btn-flat pull-left">Acrescentar evento</a>
+                        <a href="../../controllers/admin/eventos.php?acao=inserir" class="btn btn-sm btn-info btn-flat pull-left cor">Acrescentar evento</a>
                     </div>
                 </div>
 
@@ -348,7 +381,7 @@ $baseURL = "http://localhost/Projeto/";
                         </div>
                     </div>
                     <div class="box-footer clearfix">
-                        <a href="../../controllers/admin/canais.php?acao=inserir" class="btn btn-sm btn-info btn-flat pull-left">Acrescentar canal</a>
+                        <a href="../../controllers/admin/canais.php?acao=inserir" class="btn btn-sm btn-info btn-flat pull-left cor">Acrescentar canal</a>
                     </div>
                 </div>
 
@@ -401,7 +434,7 @@ $baseURL = "http://localhost/Projeto/";
                         </div>
                     </div>
                     <div class="box-footer clearfix">
-                        <a href="../../controllers/admin/sites.php?acao=inserir" class="btn btn-sm btn-info btn-flat pull-left">Acrescentar site</a>
+                        <a href="../../controllers/admin/sites.php?acao=inserir" class="btn btn-sm btn-info btn-flat pull-left cor">Acrescentar site</a>
                     </div>
                 </div>
 
@@ -455,7 +488,7 @@ $baseURL = "http://localhost/Projeto/";
                         </div>
                     </div>
                     <div class="box-footer clearfix">
-                        <a href="../../controllers/admin/usuarios.php?acao=inserir" class="btn btn-sm btn-info btn-flat pull-left">Acrescentar usuario</a>
+                        <a href="../../controllers/admin/usuarios.php?acao=inserir" class="btn btn-sm btn-info btn-flat pull-left cor">Acrescentar usuario</a>
                     </div>
                 </div>
             </div>
@@ -467,93 +500,10 @@ $baseURL = "http://localhost/Projeto/";
 
     <!-- RODAPÉ -->
     <footer class="main-footer">
-        <!-- To the right -->
-        <div class="pull-right hidden-xs">
-            Anything you want
-        </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2018 </strong> All rights reserved.
+        <strong>Copyright &copy; 2018 </strong> | Design by Vitória E. Madruga, Sarah Hoegen e Giovanna C. Cordeiro
     </footer>
     <!-- /RODAPÉ -->
-
-    <!-- BARRA LATERAL DIREITA -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Create the tabs -->
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <!-- Home tab content -->
-            <div class="tab-pane active" id="control-sidebar-home-tab">
-                <h3 class="control-sidebar-heading">Recent Activity</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:;">
-                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                                <p>Will be 23 on April 24th</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.control-sidebar-menu -->
-
-                <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:;">
-                            <h4 class="control-sidebar-subheading">
-                                Custom Template Design
-                                <span class="pull-right-container">
-                    <span class="label label-danger pull-right">70%</span>
-                  </span>
-                            </h4>
-
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.control-sidebar-menu -->
-
-            </div>
-            <!-- /.tab-pane -->
-            <!-- Stats tab content -->
-            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-            <!-- /.tab-pane -->
-            <!-- Settings tab content -->
-            <div class="tab-pane" id="control-sidebar-settings-tab">
-                <form method="post">
-                    <h3 class="control-sidebar-heading">General Settings</h3>
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Report panel usage
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-
-                        <p>
-                            Some information about this general settings option
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
-                </form>
-            </div>
-            <!-- /.tab-pane -->
-        </div>
-    </aside>
-    <!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-    immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
-</div>
-<!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
 

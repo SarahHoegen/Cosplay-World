@@ -1,4 +1,6 @@
-<h3 class="box-title">Alterar dica</h3>
+<!--FORMULÁRIO-->
+
+<h3 class="box-title">Edite a dica</h3>
 </div>
 
 <form method="post" action="?acao=alterar">
@@ -7,12 +9,12 @@
         <div class="form-group">
             <label for="nome">Título</label>
             <input type="hidden" name="id" value="<?= $dica->getId(); ?>">
-            <input type="text" name="nome" class="form-control" value="<?= $dica->getNome(); ?>">
+            <input type="text" name="nome" class="form-control" value="<?= $dica->getNome(); ?>" required pattern="[a-zA-Z0-9 ]+">
         </div>
 
         <div class="form-group">
-            <label for="descricao">Descriçao</label>
-            <textarea name="descricao" class="form-control" cols="50" rows="4"> <?= $dica->getDescricao(); ?> </textarea>
+            <label for="descricao">Descrição</label>
+            <textarea name="descricao" class="form-control" cols="50" rows="4" required pattern="[a-zA-Z0-9 ]+"> <?= $dica->getDescricao(); ?> </textarea>
         </div>
 
         <div class="form-group">
@@ -28,3 +30,5 @@
 
 </div>
 </section>
+
+<!--/FORMULÁRIO-->

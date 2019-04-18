@@ -1,4 +1,6 @@
-<h3 class="box-title">Excluir dica</h3>
+<!--FORMULÁRIO-->
+
+<h3 class="box-title">Exclua a dica</h3>
 </div>
 
 <form method="post" action="?acao=excluir">
@@ -7,14 +9,13 @@
         <div class="form-group">
             <label for="nome">Título</label>
             <input type="hidden" name="id" value="<?= $dica->getId(); ?>" />
-            <input type="text" name="nome" class="form-control" id="nome" value="<?= $dica->getNome(); ?>" readonly/>
+            <input type="text" name="nome" class="form-control" value="<?= $dica->getNome(); ?>" readonly/>
         </div>
 
         <div class="form-group">
-            <label for="descricao">Descriçao</label>
+            <label for="descricao">Descrição</label>
             <textarea name="descricao" class="form-control" cols="50" rows="4" readonly> <?= $dica->getDescricao(); ?> </textarea>
         </div>
-
 
         <div class="form-group">
             <input type="hidden" name="data" class="form-control" value="<?= $dica->getData(); ?>" readonly/>
@@ -30,3 +31,4 @@
 </div>
 </section>
 
+<!--/FORMULÁRIO-->

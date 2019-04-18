@@ -14,13 +14,12 @@ $baseURL = "http://localhost/Projeto/";
 
         if ($resultado != false){
             session_start();
-            $_SESSION['id'] = $resultado['id'];
+            $_SESSION['id'] = $resultado['id_usuario'];
             $_SESSION['usuario'] = $resultado['nome'];
             $_SESSION['apelido'] = $resultado['apelido'];
             $_SESSION['imagem'] = $resultado['imagem'];
             $_SESSION['tipo_user'] = $resultado['tipo_user'] ;
             $_SESSION['esta_logado'] = true;
-
             if ($resultado['tipo_user'] == 0){
                 header('Location: http://localhost/Projeto/index.php');
             }else{
@@ -28,11 +27,13 @@ $baseURL = "http://localhost/Projeto/";
             }
 
         }else {
+            header("location: http://localhost/Projeto/app/controllers/usuario/login.php?erro=1");
+            
             logar();
         }
     }
 
-    function sair(){
+    function sair(){    
         $login = new Login();
         $login->logout();
     }
@@ -40,6 +41,10 @@ $baseURL = "http://localhost/Projeto/";
     //Rotas
     if (isset($_GET['acao'])) {
         $acao = $_GET['acao'];
+        echo "error kkj";
+
+            #$mensagem = "Login ou senha incorretos.";
+            #header("location: ?acao=&msg=$mensagem");
     }else {
         $acao = 'logar';
     }

@@ -1,33 +1,24 @@
+<!--FORMULÁRIO-->
 
-<h3 id="tit_alterar">
-    Alterar a dica!
-</h3>
-
+<h3 id="tit_alterar">Edite uma dica!</h3>
 <form method="post" action="?acao=alterar">
 
     <div class="form-group">
-
-        <label for="exampleInputEmail1">Título da Dica(Nome)</label>
+        <label for="exampleInputEmail1">Nome da dica</label>
         <div class="inputs">
             <input type="hidden" name="id" value="<?= $dica->getId(); ?>">
-            <input type="text" name="nome" class="form-control inputLogin" id="exampleInputEmail1" value="<?= $dica->getNome(); ?>">
+            <input type="text" name="nome" class="form-control inputLogin" value="<?= $dica->getNome(); ?>" required pattern="[a-zA-Z0-9 ]+">
         </div>
-
     </div>
-
 
     <div class="form-group">
         <label for="desc">Descrição</label>
         <div  class="inputs">
-            <input type="text" name="descricao" class="form-control inputLogin" id="desc" value="<?= $dica->getDescricao(); ?>">
+            <textarea name="descricao" class="form-control inputLogin" cols="50" rows="4" required pattern="[a-zA-Z0-9 ]+"> <?= $dica->getDescricao(); ?> </textarea>
         </div>
     </div><br>
 
-    <br>
-
-    <button id="gravar" type="submit" name="gravar" class="btn btn-success">Alterar!</button>
+    <button type="submit" name="gravar" class="btn btn-success">Editar</button>
 </form>
 
-
-<!--FORMULARIO-->
-
+<!--/FORMULÁRIO-->

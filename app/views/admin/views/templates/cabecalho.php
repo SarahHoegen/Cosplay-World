@@ -3,6 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href=" <?= $baseURL ?>assets/admin/dist/img/admin.ico" type="image/x-icon">
+    <link rel="icon" href=" <?= $baseURL ?>assets/admin/dist/img/admin.ico" type="image/x-icon">
+    
     <title>Área do Admin</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -51,13 +56,13 @@
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="<?= $baseURL ?>assets/admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img width="80px" src="<?= $baseURL ?>assets/imagens/<?= $_SESSION['imagem'];?>" class="user-image"/>
                             <span class="hidden-xs"><?php echo $_SESSION['apelido'];?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="user-header">
-                                <img src="<?= $baseURL ?>assets/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                <p><?php echo $_SESSION['usuario'];?></p>
+                                <img width="80px" src="<?= $baseURL ?>assets/imagens/<?= $_SESSION['imagem'];?>" class="user-image img"/>
+                                <p class="nome"><?php echo $_SESSION['usuario'];?></p>
                             </li>
 
                             <!-- Menu Footer-->
